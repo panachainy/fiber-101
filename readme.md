@@ -22,7 +22,7 @@ go mod init demo
 
 ## Getting started
 
-## Build
+### Build
 
 `go get`
 
