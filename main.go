@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fiber-101/mockresponse"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
@@ -42,6 +43,7 @@ func main() {
 			return nil
 		},
 	})
+
 	app.Use(logger.New())
 	app.Use(recover.New())
 
@@ -72,6 +74,10 @@ func main() {
 	app.Get("/4", func(c *fiber.Ctx) error {
 		// 503 On vacation!
 		return fiber.NewError(fiber.StatusServiceUnavailable, "On vacation!")
+	})
+
+	app.Get("/mock-response", func(c *fiber.Ctx) error {
+		return c.SendString(mockresponse.GetResponse())
 	})
 
 	app.Listen(":5000")
