@@ -177,5 +177,123 @@ func main() {
 		return c.SendString("see your console")
 	})
 
+	app.Get("/loop", func(c *fiber.Ctx) error {
+		// for
+		for i := 0; i < 10; i++ {
+			fmt.Println(i)
+		}
+
+		fmt.Println("===============================")
+
+		// while
+		i := 0
+		for i < 10 {
+			fmt.Println(i)
+			i++
+		}
+
+		fmt.Println("===============================")
+
+		// // Loop forever
+		// for {
+		// 	fmt.Println(i)
+		// 	i++
+		// }
+
+		fmt.Println("===============================")
+
+		langs := []string{"golang", "python", "typescript"}
+
+		for i := 0; i < len(langs); i++ {
+			fmt.Println(i, ":", langs[i])
+		}
+
+		fmt.Println("===============================")
+
+		for index, value := range langs {
+			fmt.Println(index, ":", value)
+		}
+
+		fmt.Println("===============================")
+
+		for _, value := range langs {
+			fmt.Println("only value:", value)
+		}
+		return c.SendString("see your console")
+	})
+
+	app.Get("/maps", func(c *fiber.Ctx) error {
+		status := map[int]string{
+			200: "OK",
+			400: "Bad Request",
+		}
+
+		fmt.Printf("% #v\n", status)
+
+		l := len(status)
+		fmt.Printf("length: %d\n", l)
+
+		fmt.Println()
+
+		status[200] = "Okie"
+		fmt.Printf("% #v\n", status)
+
+		fmt.Println()
+
+		status[285] = "wtf"
+		l = len(status)
+		fmt.Printf("length: %d\n", l)
+		fmt.Printf("% #v\n", status)
+
+		fmt.Println()
+
+		delete(status, 285)
+		l = len(status)
+		fmt.Printf("length: %d\n", l)
+		fmt.Printf("% #v\n", status)
+
+		fmt.Println()
+
+		// check if existing
+		v, ok := status[222]
+		if ok {
+			fmt.Printf("% #v\n", v)
+		} else {
+			fmt.Println("not found")
+		}
+
+		// check if existing -> short for
+		if v2, ok2 := status[222]; ok2 {
+			fmt.Printf("% #v\n", v2)
+		} else {
+			fmt.Println("not found")
+		}
+
+		// check map nil
+
+		var m map[string]string
+		if m == nil {
+			fmt.Printf("% #v\n", m)
+		} else {
+			fmt.Println("not found")
+		}
+
+		// Allocate memory before use.
+
+		x := map[string]string{}
+
+		if x == nil {
+			fmt.Printf("is nil \n")
+		} else {
+			fmt.Printf("% #v\n", x)
+		}
+
+		return c.SendString("see your console")
+	})
+
+	app.Get("/pointer", func(c *fiber.Ctx) error {
+		return c.SendString("see your console")
+	})
+
 	app.Listen(":5000")
 }
