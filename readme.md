@@ -36,8 +36,14 @@ or
 
 `air`
 
+## TODO
+
+[ ] [Simple API](https://blog.logrocket.com/express-style-api-go-fiber/)
+
 ## Ref
 
 > https://github.com/gofiber/fiber
 
 > https://techinscribed.com/5-ways-to-live-reloading-go-applications/
+
+> https://github.com/AnuchitO/intro-golang
