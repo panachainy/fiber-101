@@ -9,5 +9,6 @@ Content-Type: application/json
 
 {
     "code": "MEN",
-    "price": 123123
+    "price": 123123,
+    "priceDetailJa": 22
 }
