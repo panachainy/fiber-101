@@ -12,6 +12,9 @@
     export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
     ```
 
+- [air](https://github.com/cosmtrek/air)
+    * [th](https://www.somkiat.cc/golang-live-reload/)
+
 ## Initial project
 
 ### Create module
@@ -22,11 +25,27 @@ go mod init demo
 
 ## Getting started
 
+### Env
+
+```sh
+export DB_HOST=localhost
+export DB_PORT=5432
+export DB_USER=postgres
+export DB_PASSWORD=1234
+export DB_NAME=postgres
+export DB_SSLMODE=disable
+export DB_TIMEZONE=Asia/Shanghai
+```
+
 ### Build
 
 `go get`
 
 `go install`
+
+`go mod download`
+
+`go mod tidy -v`
 
 ### Run
 
@@ -35,6 +54,34 @@ go mod init demo
 or
 
 `air`
+
+## Docker
+
+### Docker build
+
+```sh
+docker build -t fiber .
+```
+
+### Docker test run
+
+```sh
+docker run --rm -d \
+    --name dev-fiber \
+    --network dev-network \
+    -p 5000:5000 \
+    fiber
+```
+
+### Docker run
+
+```sh
+docker run \
+    --name dev-fiber \
+    --network dev-network \
+    -p 5000:5000 \
+    fiber
+```
 
 ## TODO
 
@@ -47,3 +94,5 @@ or
 > https://techinscribed.com/5-ways-to-live-reloading-go-applications/
 
 > https://github.com/AnuchitO/intro-golang
+
+> https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge

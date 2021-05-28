@@ -1,5 +1,8 @@
 run:
 	go run main.go
 
-run-dev:
+run-w:
 	air
+
+tiny:
+	go mod tidy -v
