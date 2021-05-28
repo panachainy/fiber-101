@@ -28,6 +28,10 @@ go mod init demo
 
 `go install`
 
+`go mod download`
+
+`go mod tidy -v`
+
 ### Run
 
 `go run server.go`
