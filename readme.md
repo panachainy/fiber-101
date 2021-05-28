@@ -36,6 +36,35 @@ or
 
 `air`
 
+
+## Docker
+
+### Docker build
+
+```sh
+docker build -t fiber .
+```
+
+### Docker test run
+
+```sh
+docker run --rm -d \
+    --name dev-fiber \
+    --network dev-network \
+    -p 5000:5000 \
+    fiber
+```
+
+### Docker run
+
+```sh
+docker run \
+    --name dev-fiber \
+    --network dev-network \
+    -p 5000:5000 \
+    fiber
+```
+
 ## TODO
 
 [ ] [Simple API](https://blog.logrocket.com/express-style-api-go-fiber/)
