@@ -34,8 +34,7 @@ func main() {
 		},
 	})
 
-	database.InitDatabase()
-	// defer database.DBConn.Close()
+	database.Init()
 
 	app.Use(logger.New())
 	app.Use(recover.New())

@@ -10,8 +10,8 @@ import (
 // GetAllProducts from db
 func GetAllProducts(c *fiber.Ctx) error {
 	var product []model.Product
-	db := database.DBConn
-	db.Find(&product)
+
+	database.DBConn.Find(&product)
 
 	return c.JSON(fiber.Map{
 		"message": "I'm a GET request!",
@@ -20,7 +20,9 @@ func GetAllProducts(c *fiber.Ctx) error {
 }
 
 // GetSingleProduct from db
-func GetSingleProduct(c *fiber.Ctx) {
+func CreateProduct(c *fiber.Ctx) error {
+	product := model.Product{Code: "Jinzhu", Price: 18}
+	db := database.DBConn
+	db.Create(&product)
+	return c.SendStatus(201)
 }
-
-// database.DBConn.Create(&model.Product{Code: "D42", Price: 100})
