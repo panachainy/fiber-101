@@ -25,6 +25,18 @@ go mod init demo
 
 ## Getting started
 
+### Env
+
+```sh
+export DB_HOST=localhost
+export DB_PORT=5432
+export DB_USER=postgres
+export DB_PASSWORD=1234
+export DB_NAME=postgres
+export DB_SSLMODE=disable
+export DB_TIMEZONE=Asia/Shanghai
+```
+
 ### Build
 
 `go get`
