@@ -21,7 +21,12 @@ func GetAllProducts(c *fiber.Ctx) error {
 
 // GetSingleProduct from db
 func CreateProduct(c *fiber.Ctx) error {
-	product := model.Product{Code: "Jinzhu", Price: 18}
+	product := new(model.Product)
+
+	if err := c.BodyParser(product); err != nil {
+		return err
+	}
+
 	db := database.DBConn
 	db.Create(&product)
 	return c.SendStatus(201)

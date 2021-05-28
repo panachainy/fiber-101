@@ -1,27 +1,14 @@
-#
+###
 
-GET http://127.0.0.1:5000/1
+GET http://localhost:5000/products
 
 ###
 
-GET http://127.0.0.1:5000/2
+POST http://localhost:5000/products
+Content-Type: application/json
 
-###
-
-GET http://127.0.0.1:5000/3
-
-###
-
-GET http://127.0.0.1:5000/4
-
-###
-
-GET http://127.0.0.1:5000/mock-response
-
-###
-
-GET http://127.0.0.1:5000/arrays
-
-###
-
-GET http://127.0.0.1:5000/slices
+{
+    "code": "MEN",
+    "price": 123123,
+    "priceDetailJa": 22
+}
