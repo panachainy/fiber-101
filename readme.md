@@ -12,6 +12,9 @@
     export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
     ```
 
+- [air](https://github.com/cosmtrek/air)
+    * [th](https://www.somkiat.cc/golang-live-reload/)
+
 ## Initial project
 
 ### Create module
@@ -39,7 +42,6 @@ go mod init demo
 or
 
 `air`
-
 
 ## Docker
 

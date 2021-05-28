@@ -12,5 +12,4 @@ require (
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 	gorm.io/driver/postgres v1.1.0
 	gorm.io/gorm v1.21.10
-	github.com/cosmtrek/air v1.27.3 // indirect
 )
