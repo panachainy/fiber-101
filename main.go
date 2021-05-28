@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fiber-101/database"
+	"fiber-101/router"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
@@ -32,16 +34,13 @@ func main() {
 		},
 	})
 
+	database.InitDatabase()
+	// defer database.DBConn.Close()
+
 	app.Use(logger.New())
 	app.Use(recover.New())
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-
-	app.Get("/version", func(c *fiber.Ctx) error {
-		return c.SendStatus(200)
-	})
+	router.SetupRoutes(app)
 
 	app.Listen(":5000")
 }
