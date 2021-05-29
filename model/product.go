@@ -6,5 +6,5 @@ type Product struct {
 	gorm.Model
 	Code          string
 	Price         uint
-	PriceDetailJa uint
+	PriceDetailJa int
 }
