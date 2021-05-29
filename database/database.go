@@ -25,8 +25,11 @@ func Init() {
 
 	DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("failed to connect database")
+		panic("Failed to connect database")
 	}
 
-	DBConn.AutoMigrate(&model.Product{})
+	err = DBConn.AutoMigrate(&model.Product{})
+	if err != nil {
+		panic("Failed to auto migrate database")
+	}
 }

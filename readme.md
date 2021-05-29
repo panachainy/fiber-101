@@ -45,6 +45,8 @@ export DB_TIMEZONE=Asia/Shanghai
 
 `go mod download`
 
+#### Clean dependency
+
 `go mod tidy -v`
 
 ### Run
