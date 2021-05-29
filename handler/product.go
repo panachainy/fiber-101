@@ -7,7 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// GetAllProducts from db
 func GetAllProducts(c *fiber.Ctx) error {
 	var product []model.Product
 
@@ -19,12 +18,17 @@ func GetAllProducts(c *fiber.Ctx) error {
 	})
 }
 
-// GetSingleProduct from db
 func CreateProduct(c *fiber.Ctx) error {
 	product := new(model.Product)
 
 	if err := c.BodyParser(product); err != nil {
-		return err
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+	errors := model.ValidateStruct(*product)
+	if errors != nil {
+		return c.JSON(errors)
 	}
 
 	db := database.DBConn

@@ -1,8 +1,8 @@
-###
+### get product
 
 GET http://localhost:5000/products
 
-###
+### create product
 
 POST http://localhost:5000/products
 Content-Type: application/json
@@ -10,5 +10,27 @@ Content-Type: application/json
 {
     "code": "MEN",
     "price": 123123,
-    "priceDetailJa": 22
+    "priceDetailJa": -22
+}
+
+### invalid type price case
+
+POST http://localhost:5000/products
+Content-Type: application/json
+
+{
+    "code": "MEN",
+    "price": -123123,
+    "priceDetailJa": -22
+}
+
+### invalid validate code case
+
+POST http://localhost:5000/products
+Content-Type: application/json
+
+{
+    "code": "ME",
+    "price": 222111,
+    "priceDetailJa": -22
 }
