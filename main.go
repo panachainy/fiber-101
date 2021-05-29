@@ -3,12 +3,16 @@ package main
 import (
 	"fiber-101/database"
 	"fiber-101/router"
+	"flag"
 	"fmt"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 )
+
+var port = flag.String("port", ":5000", "Port to listen on")
 
 func main() {
 	app := fiber.New(fiber.Config{
@@ -41,5 +45,5 @@ func main() {
 
 	router.SetupRoutes(app)
 
-	app.Listen(":5000")
+	log.Fatal(app.Listen(*port))
 }
