@@ -1,0 +1,6 @@
+feature: ["feature/*"]
+fix: fix/*
+chore: chore/*
+bug: bug/*
+enhancement: ["tech/*", "enhancement/*"]
+debt: debt/*
