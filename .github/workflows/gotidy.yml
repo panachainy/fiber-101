@@ -3,7 +3,7 @@ name: Tidy
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
     paths:
       - '.github/workflows/gotidy.yml'
       - 'go.mod'
