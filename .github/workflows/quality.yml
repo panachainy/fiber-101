@@ -4,6 +4,19 @@ jobs:
   test:
     name: Test with Coverage
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: "1234"
+          POSTGRES_DB: test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - name: Set up Go
         uses: actions/setup-go@v1
@@ -25,8 +38,3 @@ jobs:
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: goveralls -coverprofile=covprofile -service=github
-    # or use shogo82148/actions-goveralls
-    # - name: Send coverage
-    #   uses: shogo82148/actions-goveralls@v1
-    #   with:
-    #     path-to-profile: covprofile
