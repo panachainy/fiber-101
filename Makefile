@@ -5,7 +5,13 @@ tidy:
 	go mod tidy -v
 
 test:
-	go test -race
+	go test -v -cover
 
-test-in:
-	go test -race -tags=integration
+test-cov:
+	go test -coverprofile=coverage.out
+
+cov-htm:
+	go tool cover -html=coverage.out
+
+cov-func:
+	go tool cover -func=coverage.out
