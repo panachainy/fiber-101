@@ -1,6 +1,9 @@
+// +build integration
+
 package main
 
 import (
+	"fiber-101/utils"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -35,6 +38,8 @@ func TestGet(t *testing.T) {
 			expectedBody:  "Cannot GET /i-dont-exist",
 		},
 	}
+
+	utils.SetupTest()
 
 	app := SetupApp()
 
