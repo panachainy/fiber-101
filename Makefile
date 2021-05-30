@@ -5,10 +5,10 @@ tidy:
 	go mod tidy -v
 
 test:
-	go test -v -cover
+	go test -v -cover ./...
 
 test-cov:
-	go test -coverprofile=coverage.out
+	go test -coverprofile=coverage.out ./...
 
 cov-htm:
 	go tool cover -html=coverage.out
