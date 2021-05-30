@@ -85,10 +85,6 @@ docker run \
     fiber
 ```
 
-## TODO
-
-[ ] [Simple API](https://blog.logrocket.com/express-style-api-go-fiber/)
-
 ## Ref
 
 > https://github.com/gofiber/fiber
