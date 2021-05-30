@@ -8,10 +8,10 @@ test:
 	go test -v -cover ./...
 
 test-cov:
-	go test -coverprofile=coverage.out ./...
+	go test -race -covermode atomic -coverprofile=covprofile ./...
 
 cov-htm:
-	go tool cover -html=coverage.out
+	go tool cover -html=covprofile
 
 cov-func:
-	go tool cover -func=coverage.out
+	go tool cover -func=covprofile
