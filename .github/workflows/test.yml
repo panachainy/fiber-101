@@ -7,6 +7,22 @@ jobs:
         go-version: [1.14.x, 1.15.x, 1.16.x]
         platform: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: "1234"
+          POSTGRES_DB: test_db
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - name: Install Go
       uses: actions/setup-go@v1
