@@ -15,6 +15,12 @@ import (
 var port = flag.String("port", ":5000", "Port to listen on")
 
 func main() {
+	app := SetupApp()
+
+	log.Fatal(app.Listen(*port))
+}
+
+func SetupApp() *fiber.App {
 	app := fiber.New(fiber.Config{
 		// Override default error handler
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
@@ -45,5 +51,5 @@ func main() {
 
 	router.SetupRoutes(app)
 
-	log.Fatal(app.Listen(*port))
+	return app
 }
