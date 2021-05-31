@@ -25,7 +25,7 @@ func GetProduct(c *fiber.Ctx) error {
 	var product model.Product
 	db.Find(&product, id)
 	if product.ID == 0 {
-		c.SendStatus(400)
+		c.Status(400)
 		return c.JSON(fiber.Map{
 			"message": fmt.Sprintf("Not found product id %v", id),
 		})
@@ -61,7 +61,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 	db.First(&product, id)
 
 	if product.ID == 0 {
-		c.SendStatus(400)
+		c.Status(400)
 		return c.JSON(fiber.Map{
 			"message": fmt.Sprintf("Not found product id %v", id),
 		})

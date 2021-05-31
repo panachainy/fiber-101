@@ -4,7 +4,7 @@ GET http://localhost:5000/products
 
 ### get product by id
 
-GET http://localhost:5000/products/2
+GET http://localhost:5000/products/3
 
 ### create product
 
