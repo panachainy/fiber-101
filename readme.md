@@ -90,6 +90,10 @@ docker run \
     fiber
 ```
 
+## Roadmap
+
+See the open [project board](https://github.com/panachainy/fiber-101/projects/1)
+
 ## Ref
 
 > https://github.com/gofiber/fiber
