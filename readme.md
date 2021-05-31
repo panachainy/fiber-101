@@ -1,5 +1,16 @@
 # Fiber-101
 
+## About
+
+Try Fiber framework on 101
+
+## Built With
+
+- Golang
+- Fiber v2
+- GORM
+- PG
+
 ## Prerequire
 
 - Go compiler
@@ -17,7 +28,7 @@
 
 ## Initial project
 
-### Create module
+### Create mod
 
 ```sh
 go mod init demo
@@ -39,23 +50,17 @@ export DB_TIMEZONE=Asia/Shanghai
 
 ### Build
 
-`go get`
-
 `go install`
 
 `go mod download`
 
-#### Clean dependency
+### Clean dependency
 
-`go mod tidy -v`
+`go mod tidy -v` or `make tidy`
 
 ### Run
 
-`go run server.go`
-
-or
-
-`air`
+`go run server.go` or `air`
 
 ## Docker
 
@@ -65,7 +70,7 @@ or
 docker build -t fiber .
 ```
 
-### Docker test run
+### Docker try run
 
 ```sh
 docker run --rm -d \
@@ -85,9 +90,9 @@ docker run \
     fiber
 ```
 
-## TODO
+## Roadmap
 
-[ ] [Simple API](https://blog.logrocket.com/express-style-api-go-fiber/)
+See the open [project board](https://github.com/panachainy/fiber-101/projects/1)
 
 ## Ref
 
@@ -100,3 +105,5 @@ docker run \
 > https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge
 
 > https://github.com/mattn/goveralls
+
+> https://docs.gofiber.io/
