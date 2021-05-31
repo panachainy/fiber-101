@@ -2,6 +2,10 @@
 
 GET http://localhost:5000/products
 
+### get product by id
+
+GET http://localhost:5000/products/2
+
 ### create product
 
 POST http://localhost:5000/products
@@ -34,3 +38,7 @@ Content-Type: application/json
     "price": 222111,
     "priceDetailJa": -22
 }
+
+### delete product by id
+
+DELETE http://localhost:5000/products/1
