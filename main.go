@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fiber-101/build"
 	"fiber-101/database"
 	"fiber-101/router"
 	"flag"
@@ -15,6 +16,8 @@ import (
 var port = flag.String("port", ":5000", "Port to listen on")
 
 func main() {
+	build.PrintBuildDetail()
+
 	app := SetupApp()
 
 	log.Fatal(app.Listen(*port))
