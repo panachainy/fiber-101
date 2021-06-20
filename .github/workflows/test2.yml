@@ -32,6 +32,9 @@ jobs:
         # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+      - name: Set version
+        run: VERSION=$(./version.sh)
+
       # - name: Push image
       #   run: |
       #     IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
@@ -52,5 +55,5 @@ jobs:
         with:
           push: true
           tags: |
-            docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:$VERSION
-            docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME:latest
+            docker.pkg.github.com/${{ github.repository }}/${{ IMAGE_NAME }}:$${{ VERSION }}
+            docker.pkg.github.com/${{ github.repository }}/${{ IMAGE_NAME }}:latest
