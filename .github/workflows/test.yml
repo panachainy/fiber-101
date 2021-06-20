@@ -37,5 +37,7 @@ jobs:
   build_image:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
       - name: Build image
-        run: docker build . --file Dockerfile
+        run: docker build .
