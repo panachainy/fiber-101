@@ -15,3 +15,6 @@ cov-htm:
 
 cov-func:
 	go tool cover -func=covprofile
+
+publish:
+	publish.sh
