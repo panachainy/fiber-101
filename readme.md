@@ -1,5 +1,7 @@
 # Fiber-101
 
+[![Coverage Status](https://coveralls.io/repos/github/panachainy/fiber-101/badge.svg)](https://coveralls.io/github/panachainy/fiber-101)
+
 ## About
 
 Try Fiber framework on 101
