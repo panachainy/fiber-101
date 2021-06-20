@@ -1,7 +1,7 @@
 on: [push]
 name: Linter
 jobs:
-  Golint:
+  golint:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch Repository

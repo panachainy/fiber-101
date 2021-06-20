@@ -1,7 +1,7 @@
 name: Test
 on: [push]
 jobs:
-  Build:
+  build:
     strategy:
       matrix:
         go-version: [1.14.x, 1.15.x, 1.16.x]
@@ -34,3 +34,8 @@ jobs:
         uses: shogo82148/actions-goveralls@v1
         with:
           path-to-profile: covprofile
+  build_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
