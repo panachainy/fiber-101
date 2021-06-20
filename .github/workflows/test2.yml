@@ -5,8 +5,7 @@ on:
     # Publish `release` as Docker `latest` image.
     branches:
       - release
-      - feature/versionning
-      - develop
+      - main
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -14,6 +13,7 @@ on:
 
 env:
   IMAGE_NAME: fiber_101
+  LATEST_BRANCH: main
 
 jobs:
   push:
@@ -32,28 +32,22 @@ jobs:
         # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Set version
-        run: VERSION=$(./version.sh)
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
 
-      # - name: Push image
-      #   run: |
-      #     IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 
-      #     # Change all uppercase to lowercase
-      #     IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-      #     # Get Version from ./version.sh
-      #     VERSION=$(./version.sh)
-      #     # Use Docker `latest` tag convention
-      #     [ "$VERSION" == "main" ] && VERSION=latest
-      #     echo IMAGE_ID=$IMAGE_ID
-      #     echo VERSION=$VERSION
-      #     docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-      #     docker push $IMAGE_ID:$VERSION
-
-      - name: Build container image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: |
-            docker.pkg.github.com/${{ github.repository }}/${{ IMAGE_NAME }}:$${{ VERSION }}
-            docker.pkg.github.com/${{ github.repository }}/${{ IMAGE_NAME }}:latest
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # Get Version from ./version.sh
+          VERSION=$(./version.sh)
+          # Use Docker `latest` tag convention
+          [ ${{ steps.extract_branch.outputs.branch }} == "$LATEST_BRANCH" ] && VERSION=latest
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
