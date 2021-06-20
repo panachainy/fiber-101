@@ -16,8 +16,6 @@ import (
 var port = flag.String("port", ":5000", "Port to listen on")
 
 func main() {
-	build.PrintBuildDetail()
-
 	app := SetupApp()
 
 	log.Fatal(app.Listen(*port))
@@ -51,6 +49,8 @@ func SetupApp() *fiber.App {
 
 	app.Use(logger.New())
 	app.Use(recover.New())
+
+	build.SetupVersion(app)
 
 	router.SetupRoutes(app)
 
