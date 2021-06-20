@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fiber-101/build"
 	"fiber-101/database"
 	"fiber-101/router"
 	"flag"
@@ -48,6 +49,8 @@ func SetupApp() *fiber.App {
 
 	app.Use(logger.New())
 	app.Use(recover.New())
+
+	build.SetupVersion(app)
 
 	router.SetupRoutes(app)
 

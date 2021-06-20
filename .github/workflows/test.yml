@@ -1,7 +1,7 @@
 name: Test
 on: [push]
 jobs:
-  Build:
+  build:
     strategy:
       matrix:
         go-version: [1.14.x, 1.15.x, 1.16.x]
@@ -22,15 +22,22 @@ jobs:
           - 5432:5432
 
     steps:
-    - name: Install Go
-      uses: actions/setup-go@v1
-      with:
-        go-version: ${{ matrix.go-version }}
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-    - name: Run Test
-      run: make test-cov
-    - name: Send coverage
-      uses: shogo82148/actions-goveralls@v1
-      with:
-        path-to-profile: covprofile
+      - name: Install Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run Test
+        run: make test-cov
+      - name: Send coverage
+        uses: shogo82148/actions-goveralls@v1
+        with:
+          path-to-profile: covprofile
+  build_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Build image
+        run: docker build .

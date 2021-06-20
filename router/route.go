@@ -11,10 +11,6 @@ func SetupRoutes(app *fiber.App) {
 		return c.SendString("OK")
 	})
 
-	app.Get("/version", func(c *fiber.Ctx) error {
-		return c.SendStatus(200)
-	})
-
 	app.Get("/products", handler.GetProducts)
 
 	app.Get("/products/:id", handler.GetProduct)

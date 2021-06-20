@@ -62,7 +62,15 @@ export DB_TIMEZONE=Asia/Shanghai
 
 ### Run
 
-`go run server.go` or `air`
+`go run server.go`
+
+### Run + watch
+
+`air`
+
+### Publish
+
+`publish.sh`
 
 ## Docker
 
