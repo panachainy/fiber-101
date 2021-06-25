@@ -1,0 +1,33 @@
+name: Check release tag
+
+on:
+  pull_request:
+    types: [synchronize, opened, reopened]
+    branches: [release]
+
+jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: get_last_version
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+          excludes: prerelease, draft
+      - name: Check version is duplicate with previous versions or not.
+        run: |
+          last_version="$(echo ${{ steps.get_last_version.outputs.release }} | sed 's/v//')"
+          current_version="$(echo $(./version.sh) | sed 's/v//')"
+
+          echo "Lastest version: $last_version"
+          echo "Current version: $current_version"
+          echo '====================================='
+
+          if [ "$last_version" == "$current_version" ]; then
+              echo "Error version is the same previous version should be upgrade your version before merge."
+              exit 1
+          else
+              echo "Version is not duplicate."
+              exit 0
+          fi

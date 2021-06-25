@@ -106,14 +106,9 @@ See the open [project board](https://github.com/panachainy/fiber-101/projects/1)
 
 ## Ref
 
-> https://github.com/gofiber/fiber
-
-> https://techinscribed.com/5-ways-to-live-reloading-go-applications/
-
-> https://github.com/AnuchitO/intro-golang
-
-> https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge
-
-> https://github.com/mattn/goveralls
-
-> https://docs.gofiber.io/
+* https://github.com/gofiber/fiber
+* https://techinscribed.com/5-ways-to-live-reloading-go-applications/
+* https://github.com/AnuchitO/intro-golang
+* https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge
+* https://github.com/mattn/goveralls
+* https://docs.gofiber.io/
