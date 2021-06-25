@@ -2,8 +2,7 @@ name: Check release tag
 
 on:
   pull_request:
-    branches: [release]
-  pull_request_review:
+    types: [synchronize, opened, reopened]
     branches: [release]
 
 jobs:
