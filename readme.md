@@ -102,7 +102,7 @@ docker run \
 
 or
 
-> Note: DB_HOST will get env from your machine.
+> Note: After -e is key of env from your machine.
 
 ```sh
 docker run \
