@@ -1,7 +1,9 @@
 name: Docker build and push Digital Ocean
 
 on:
-  push
+  push:
+    branches:
+      - main
 
 env:
   IMAGE_NAME: fiber_101
