@@ -100,6 +100,25 @@ docker run \
     fiber
 ```
 
+or
+
+> Note: DB_HOST will get env from your machine.
+
+```sh
+docker run \
+    -e DB_HOST \
+    -e DB_PORT \
+    -e DB_USER \
+    -e DB_PASSWORD \
+    -e DB_NAME \
+    -e DB_SSLMODE \
+    -e DB_TIMEZONE \
+    --name dev-fiber \
+    --network dev-network \
+    -p 5000:5000 \
+    fiber
+```
+
 ## Other docs
 
 - [Digital Ocean](docs/digital-ocean.md)
