@@ -100,6 +100,10 @@ docker run \
     fiber
 ```
 
+## Other docs
+
+- [Digital Ocean](docs/digital-ocean.md)
+
 ## Roadmap
 
 See the open [project board](https://github.com/panachainy/fiber-101/projects/1)
