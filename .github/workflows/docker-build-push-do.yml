@@ -1,0 +1,33 @@
+name: Docker build and push Digital Ocean
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: fiber_101
+  LATEST_BRANCH: main
+  REGISTRY_NAME: panachainy
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Build container image
+        run: docker build -t registry.digitalocean.com/$REGISTRY_NAME/$REGISTRY_NAME:latest .
+
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 1200
+
+      - name: Push image to DigitalOcean Container Registry
+        run: docker push registry.digitalocean.com/$REGISTRY_NAME/$REGISTRY_NAME:latest
