@@ -1,44 +1,26 @@
-### get product
+#@baseUrl=""
+@baseUrl="http://localhost:5000"
 
-GET http://localhost:5000/products
+### get product
+curl "{{baseUrl}}/products"
 
 ### get product by id
-
-GET http://localhost:5000/products/3
+curl "{{baseUrl}}/products/1"
 
 ### create product
-
-POST http://localhost:5000/products
-Content-Type: application/json
-
-{
-    "code": "MEN",
-    "price": 123123,
-    "priceDetailJa": -22
-}
+curl -X POST "{{baseUrl}}/products" \
+    -H 'Content-Type: application/json' \
+    -d '{"code":"MEN","price":123123,"priceDetailJa":-22}'
 
 ### invalid type price case
-
-POST http://localhost:5000/products
-Content-Type: application/json
-
-{
-    "code": "MEN",
-    "price": -123123,
-    "priceDetailJa": -22
-}
+curl -X POST "{{baseUrl}}/products" \
+    -H 'Content-Type: application/json' \
+    -d '{"code":"MEN","price":-123123,"priceDetailJa":22}'
 
 ### invalid validate code case
-
-POST http://localhost:5000/products
-Content-Type: application/json
-
-{
-    "code": "ME",
-    "price": 222111,
-    "priceDetailJa": -22
-}
+curl -X POST "{{baseUrl}}/products" \
+    -H 'Content-Type: application/json' \
+    -d '{"code":"ME","price":222111,"priceDetailJa":-22}'
 
 ### delete product by id
-
-DELETE http://localhost:5000/products/1
+curl -X DELETE "{{baseUrl}}/products/1"
