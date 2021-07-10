@@ -14,19 +14,16 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	log  *logrus.Logger
-	port = flag.String("port", ":5000", "Port to listen on")
-)
+var port = flag.String("port", ":5000", "Port to listen on")
 
 func main() {
 	app := SetupApp()
 
-	log.Fatal(app.Listen(*port))
+	logrus.Fatal(app.Listen(*port))
 }
 
 func SetupApp() *fiber.App {
-	log = utils.InitLogrus()
+	utils.InitLogrus()
 
 	app := fiber.New(fiber.Config{
 		// Override default error handler

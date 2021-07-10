@@ -6,22 +6,25 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func InitLogrus() *logrus.Logger {
-	lvl, ok := os.LookupEnv("LOG_LEVEL")
+func InitLogrus() {
+	logLevel, ok := os.LookupEnv("LOG_LEVEL")
+
 	// LOG_LEVEL not set, let's default to debug
 	if !ok {
-		lvl = "debug"
+		logLevel = "debug"
 	}
+
 	// parse string, this is built-in feature of logrus
-	ll, err := logrus.ParseLevel(lvl)
+	logrusLevel, err := logrus.ParseLevel(logLevel)
 	if err != nil {
-		ll = logrus.DebugLevel
+		logrusLevel = logrus.DebugLevel
 	}
+
 	// set global log level
-	logrus.SetLevel(ll)
+	logrus.SetLevel(logrusLevel)
 	logrus.SetFormatter(&logrus.TextFormatter{})
 	logrus.SetOutput(os.Stdout)
 
 	logrus.Infoln("Log level: ", logrus.GetLevel())
-	return logrus.New()
+	logrus.New()
 }
