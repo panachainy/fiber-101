@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/joho/godotenv"
 )
@@ -9,6 +9,6 @@ import (
 func SetupTest() {
 	err := godotenv.Load(".env.test")
 	if err != nil {
-		fmt.Println("Error loading .env.test file:", err)
+		log.Println("Error loading .env.test file:", err)
 	}
 }
