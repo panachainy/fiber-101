@@ -74,6 +74,17 @@ export DB_TIMEZONE=Asia/Shanghai
 
 ## Docker
 
+### Pre-require
+
+#### Database PostgreSQL
+
+Run PostgreSQL
+
+```sh
+cd ./mocks/pg/
+docker-compose up -d
+```
+
 ### Docker build
 
 ```sh
@@ -105,16 +116,16 @@ or
 > Note: After -e is key of env from your machine.
 
 ```sh
+docker rm fiber
 docker run \
-    -e DB_HOST \
-    -e DB_PORT \
-    -e DB_USER \
-    -e DB_PASSWORD \
-    -e DB_NAME \
-    -e DB_SSLMODE \
-    -e DB_TIMEZONE \
-    --name dev-fiber \
-    --network dev-network \
+    -e DB_HOST=pg_postgres_1 \
+    -e DB_PORT=5432 \
+    -e DB_USER=postgres \
+    -e DB_PASSWORD=1234 \
+    -e DB_NAME=postgres \
+    -e DB_SSLMODE=disable \
+    -e DB_TIMEZONE=Asia/Shanghai \
+    --network pg_pg_network \
     -p 5000:5000 \
     fiber
 ```
@@ -129,9 +140,8 @@ See the open [project board](https://github.com/panachainy/fiber-101/projects/1)
 
 ## Ref
 
-* https://github.com/gofiber/fiber
-* https://techinscribed.com/5-ways-to-live-reloading-go-applications/
-* https://github.com/AnuchitO/intro-golang
-* https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge
-* https://github.com/mattn/goveralls
-* https://docs.gofiber.io/
+- [Fiber](https://github.com/gofiber/fiber)
+- [Live-reload](https://techinscribed.com/5-ways-to-live-reloading-go-applications/)
+- [Intro-golang](https://github.com/AnuchitO/intro-golang)
+- [Fiber-Golang-YT](https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge)
+- [Coveralls](https://github.com/mattn/goveralls)
