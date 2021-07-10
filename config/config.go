@@ -1,7 +1,7 @@
 package config
 
 import (
-	"fmt"
+	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -10,7 +10,7 @@ import (
 func Get(key string) string {
 	err := godotenv.Load(".env")
 	if err != nil {
-		fmt.Println("Error loading .env file:", err)
+		log.Println("Error loading .env file:", err)
 	}
 
 	return os.Getenv(key)
