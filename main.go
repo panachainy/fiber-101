@@ -4,16 +4,20 @@ import (
 	"fiber-101/build"
 	"fiber-101/database"
 	"fiber-101/router"
+	"fiber-101/utils"
 	"flag"
 	"fmt"
-	"log"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/sirupsen/logrus"
 )
 
-var port = flag.String("port", ":5000", "Port to listen on")
+var (
+	log  *logrus.Logger
+	port = flag.String("port", ":5000", "Port to listen on")
+)
 
 func main() {
 	app := SetupApp()
@@ -22,6 +26,8 @@ func main() {
 }
 
 func SetupApp() *fiber.App {
+	log = utils.InitLogrus()
+
 	app := fiber.New(fiber.Config{
 		// Override default error handler
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
