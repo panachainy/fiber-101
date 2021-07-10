@@ -50,6 +50,12 @@ export DB_SSLMODE=disable
 export DB_TIMEZONE=Asia/Shanghai
 ```
 
+or
+
+```sh
+export DATABASE_DSN="host=localhost user=postgres password=1234 dbname=postgres port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+```
+
 ### Build
 
 `go install`
