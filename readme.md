@@ -119,8 +119,6 @@ docker run \
 
 or
 
-> Note: After -e is key of env from your machine.
-
 ```sh
 docker rm fiber
 docker run \
