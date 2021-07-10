@@ -12,9 +12,9 @@ var (
 )
 
 func printBuildDetail() {
-	logrus.Infoln("Version:\t", Version)
-	logrus.Infoln("build.Time:\t", Time)
-	logrus.Infoln("build.User:\t", User)
+	logrus.Infoln("[Build] Version:\t", Version)
+	logrus.Infoln("[Build] build.Time:\t", Time)
+	logrus.Infoln("[Build] build.User:\t", User)
 }
 
 func SetupVersion(app *fiber.App) {

@@ -17,13 +17,13 @@ func Init() {
 	var dsn string
 
 	if config.Get("DATABASE_DSN") != "" {
-		logrus.Infoln("Use config DATABASE_DSN")
-		logrus.Debug("DATABASE_DSN: ", config.Get("DATABASE_DSN"))
+		logrus.Infoln("[DB-CONFIG] Use config DATABASE_DSN")
+		logrus.Debug("[DB-CONFIG] DATABASE_DSN: ", config.Get("DATABASE_DSN"))
 
 		dsn = config.Get("DATABASE_DSN")
 
 	} else {
-		logrus.Infoln("Use split config DATABASE")
+		logrus.Infoln("[DB-CONFIG] Use split config DATABASE")
 
 		logrus.Debug("[DB-CONFIG] DB_HOST: ", config.Get("DB_HOST"))
 		logrus.Debug("[DB-CONFIG] DB_USER: ", config.Get("DB_USER"))

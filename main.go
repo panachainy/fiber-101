@@ -48,12 +48,12 @@ func SetupApp() *fiber.App {
 		},
 	})
 
+	build.SetupVersion(app)
+
 	database.Init()
 
 	app.Use(logger.New())
 	app.Use(recover.New())
-
-	build.SetupVersion(app)
 
 	router.SetupRoutes(app)
 
