@@ -22,9 +22,12 @@ func InitLogrus() {
 
 	// set global log level
 	logrus.SetLevel(logrusLevel)
-	logrus.SetFormatter(&logrus.TextFormatter{})
+
+	// TimestampFormat: "2006-01-02 150405"
+	logrus.SetFormatter(&logrus.TextFormatter{FullTimestamp: true})
+
 	logrus.SetOutput(os.Stdout)
 
-	logrus.Infoln("Log level: ", logrus.GetLevel())
+	logrus.Infoln("[LOGRUS-CONFIG] Log level: ", logrus.GetLevel())
 	logrus.New()
 }
