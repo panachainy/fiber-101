@@ -2,7 +2,7 @@
 
 ## Prerequire
 
-1. Set secret DO_TOKEN
+1. Set secret DIGITALOCEAN_ACCESS_TOKEN
 
     > for pipeline
 
