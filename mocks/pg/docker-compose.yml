@@ -1,0 +1,35 @@
+version: "3.5"
+services:
+  postgres:
+    image: circleci/postgres
+    environment:
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: test_db
+    volumes:
+      - pg_volumn:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - pg_network
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pgadmin_volumn:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - pg_network
+    restart: unless-stopped
+
+networks:
+  pg_network:
+    driver: bridge
+
+volumes:
+  pg_volumn:
+  pgadmin_volumn:
