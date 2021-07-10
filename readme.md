@@ -48,6 +48,15 @@ export DB_PASSWORD=1234
 export DB_NAME=postgres
 export DB_SSLMODE=disable
 export DB_TIMEZONE=Asia/Shanghai
+
+# Choose [trace, debug, info, warn, error, fatal, panic] default is debug
+export LOG_LEVEL=INFO
+```
+
+or
+
+```sh
+export DATABASE_DSN="host=localhost user=postgres password=1234 dbname=postgres port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 ```
 
 ### Build
@@ -73,6 +82,17 @@ export DB_TIMEZONE=Asia/Shanghai
 `publish.sh`
 
 ## Docker
+
+### Pre-require
+
+#### Database PostgreSQL
+
+Run PostgreSQL
+
+```sh
+cd ./mocks/pg/
+docker-compose up -d
+```
 
 ### Docker build
 
@@ -100,15 +120,35 @@ docker run \
     fiber
 ```
 
+or
+
+```sh
+docker rm fiber
+docker run \
+    -e DB_HOST=pg_postgres_1 \
+    -e DB_PORT=5432 \
+    -e DB_USER=postgres \
+    -e DB_PASSWORD=1234 \
+    -e DB_NAME=postgres \
+    -e DB_SSLMODE=disable \
+    -e DB_TIMEZONE=Asia/Shanghai \
+    --network pg_pg_network \
+    -p 5000:5000 \
+    fiber
+```
+
+## Other docs
+
+- [Digital Ocean](docs/digital-ocean.md)
+
 ## Roadmap
 
 See the open [project board](https://github.com/panachainy/fiber-101/projects/1)
 
 ## Ref
 
-* https://github.com/gofiber/fiber
-* https://techinscribed.com/5-ways-to-live-reloading-go-applications/
-* https://github.com/AnuchitO/intro-golang
-* https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge
-* https://github.com/mattn/goveralls
-* https://docs.gofiber.io/
+- [Fiber](https://github.com/gofiber/fiber)
+- [Live-reload](https://techinscribed.com/5-ways-to-live-reloading-go-applications/)
+- [Intro-golang](https://github.com/AnuchitO/intro-golang)
+- [Fiber-Golang-YT](https://www.youtube.com/watch?v=Iq2qT0fRhAA&ab_channel=TutorialEdge)
+- [Coveralls](https://github.com/mattn/goveralls)
