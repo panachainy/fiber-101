@@ -1,9 +1,8 @@
 package build
 
 import (
-	"log"
-
 	"github.com/gofiber/fiber/v2"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -13,9 +12,9 @@ var (
 )
 
 func printBuildDetail() {
-	log.Println("Version:\t", Version)
-	log.Println("build.Time:\t", Time)
-	log.Println("build.User:\t", User)
+	logrus.Infoln("[BUILD] Version: ", Version)
+	logrus.Infoln("[BUILD] build.Time: ", Time)
+	logrus.Infoln("[BUILD] build.User: ", User)
 }
 
 func SetupVersion(app *fiber.App) {

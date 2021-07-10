@@ -4,8 +4,8 @@ import (
 	"fiber-101/config"
 	"fiber-101/model"
 	"fmt"
-	"log"
 
+	"github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -17,9 +17,22 @@ func Init() {
 	var dsn string
 
 	if config.Get("DATABASE_DSN") != "" {
+		logrus.Infoln("[DB-CONFIG] Use config DATABASE_DSN")
+		logrus.Debug("[DB-CONFIG] DATABASE_DSN: ", config.Get("DATABASE_DSN"))
+
 		dsn = config.Get("DATABASE_DSN")
-		log.Println("Use config DATABASE_DSN")
+
 	} else {
+		logrus.Infoln("[DB-CONFIG] Use split config DATABASE")
+
+		logrus.Debug("[DB-CONFIG] DB_HOST: ", config.Get("DB_HOST"))
+		logrus.Debug("[DB-CONFIG] DB_USER: ", config.Get("DB_USER"))
+		logrus.Debug("[DB-CONFIG] DB_PASSWORD: ", config.Get("DB_PASSWORD"))
+		logrus.Debug("[DB-CONFIG] DB_NAME: ", config.Get("DB_NAME"))
+		logrus.Debug("[DB-CONFIG] DB_PORT: ", config.Get("DB_PORT"))
+		logrus.Debug("[DB-CONFIG] DB_SSLMODE: ", config.Get("DB_SSLMODE"))
+		logrus.Debug("[DB-CONFIG] DB_TIMEZONE: ", config.Get("DB_TIMEZONE"))
+
 		dsn = fmt.Sprintf("host=%v user=%v password=%v dbname=%v port=%v sslmode=%v TimeZone=%v",
 			config.Get("DB_HOST"),
 			config.Get("DB_USER"),
@@ -28,7 +41,6 @@ func Init() {
 			config.Get("DB_PORT"),
 			config.Get("DB_SSLMODE"),
 			config.Get("DB_TIMEZONE"))
-		log.Println("Use split config DATABASE")
 	}
 	DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {

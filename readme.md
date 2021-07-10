@@ -48,6 +48,9 @@ export DB_PASSWORD=1234
 export DB_NAME=postgres
 export DB_SSLMODE=disable
 export DB_TIMEZONE=Asia/Shanghai
+
+# Choose [trace, debug, info, warn, error, fatal, panic] default is debug
+export LOG_LEVEL=INFO
 ```
 
 or
