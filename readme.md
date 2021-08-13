@@ -28,14 +28,6 @@ Try Fiber framework on 101
 - [air](https://github.com/cosmtrek/air)
     * [th](https://www.somkiat.cc/golang-live-reload/)
 
-## Initial project
-
-### Create mod
-
-```sh
-go mod init demo
-```
-
 ## Getting started
 
 ### Env
@@ -137,9 +129,14 @@ docker run \
     fiber
 ```
 
+## Docker pipeline
+
+TODO: xxx
+
 ## Other docs
 
 - [Digital Ocean](docs/digital-ocean.md)
+- [Init project](docs/init-project.md)
 
 ## Roadmap
 
