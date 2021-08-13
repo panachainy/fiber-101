@@ -1,0 +1,59 @@
+name: Docker build and push
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+    tags:
+      - v*
+
+env:
+  IMAGE_NAME: fiber-101
+  REGISTRY_NAME: ghcr.io/${{ github.repository_owner }}
+  LATEST_BRANCH: develop
+  DOCKER_SOURCE: ghcr.io
+  DOCKER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DOCKER_USER: ${{ github.actor }}
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Log into registry
+        # This is where you will update the PAT to GITHUB_TOKEN
+        run: echo $DOCKER_TOKEN | docker login $DOCKER_SOURCE -u $DOCKER_USER --password-stdin
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Push image
+        run: |
+          IMAGE_ID=$REGISTRY_NAME/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Get Version from ./version.sh
+          VERSION=$(./version.sh)
+
+          # Use Docker `latest` tag convention
+          [ ${{ steps.extract_branch.outputs.branch }} == "$LATEST_BRANCH" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION

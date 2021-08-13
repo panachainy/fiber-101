@@ -2,6 +2,10 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/panachainy/fiber-101/badge.svg)](https://coveralls.io/github/panachainy/fiber-101)
 
+[![Coverage Status](https://img.shields.io/docker/pulls/panachainy/fiber-101.svg)](https://hub.docker.com/r/panachainy/fiber-101)
+
+[GitHub Packages](https://github.com/panachainy/fiber-101/pkgs/container/fiber-101)
+
 ## About
 
 Try Fiber framework on 101
@@ -27,14 +31,6 @@ Try Fiber framework on 101
 
 - [air](https://github.com/cosmtrek/air)
     * [th](https://www.somkiat.cc/golang-live-reload/)
-
-## Initial project
-
-### Create mod
-
-```sh
-go mod init demo
-```
 
 ## Getting started
 
@@ -137,9 +133,14 @@ docker run \
     fiber
 ```
 
+## Docker pipeline
+
+TODO: xxx
+
 ## Other docs
 
 - [Digital Ocean](docs/digital-ocean.md)
+- [Init project](docs/init-project.md)
 
 ## Roadmap
 
