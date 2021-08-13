@@ -3,7 +3,7 @@ name: Docker build and push
 on:
   push:
     branches:
-      - develop
+      - feature/pipeline-docker
       - main
 
     tags:
@@ -12,7 +12,7 @@ on:
 env:
   IMAGE_NAME: fiber-101
   REGISTRY_NAME: panachainy
-  LATEST_BRANCH: develop
+  LATEST_BRANCH: feature/pipeline-docker
   DOCKER_SOURCE: ''
   DOCKER_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
   DOCKER_USER: panachainy
