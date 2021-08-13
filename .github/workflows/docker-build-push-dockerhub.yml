@@ -11,9 +11,9 @@ on:
 
 env:
   IMAGE_NAME: fiber_101
-  REGISTRY_NAME: ghcr.io/${{ github.repository_owner }}
+  REGISTRY_NAME: fiber_101
   LATEST_BRANCH: develop
-  DOCKER_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
 jobs:
   push:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Log into registry
         # This is where you will update the PAT to GITHUB_TOKEN
-        run: echo $DOCKER_REGISTRY_TOKEN | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo $DOCKER_REGISTRY_TOKEN | docker login -u moomalltech --password-stdin
 
       - name: Extract branch name
         shell: bash
