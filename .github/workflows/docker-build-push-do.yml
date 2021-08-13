@@ -3,18 +3,18 @@ name: Docker build and push Digital Ocean
 on:
   push:
     branches:
-      - main
+      - develop
 
 env:
   IMAGE_NAME: fiber_101
-  REGISTRY_NAME: panachainy
+  REGISTRY_NAME: try-out
 
 jobs:
   push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout master
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install doctl

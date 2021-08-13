@@ -2,18 +2,20 @@ name: Docker build and push
 
 on:
   push:
-    # Publish `release` as Docker `latest` image.
     branches:
-      - release
+      - develop
       - main
 
-    # Publish `v1.2.3` tags as releases.
     tags:
       - v*
 
 env:
-  IMAGE_NAME: fiber_101
-  LATEST_BRANCH: main
+  IMAGE_NAME: fiber-101
+  REGISTRY_NAME: panachainy
+  LATEST_BRANCH: develop
+  DOCKER_SOURCE: ''
+  DOCKER_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+  DOCKER_USER: panachainy
 
 jobs:
   push:
@@ -30,7 +32,7 @@ jobs:
 
       - name: Log into registry
         # This is where you will update the PAT to GITHUB_TOKEN
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo $DOCKER_TOKEN | docker login $DOCKER_SOURCE -u $DOCKER_USER --password-stdin
 
       - name: Extract branch name
         shell: bash
@@ -39,7 +41,7 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_ID=$REGISTRY_NAME/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
