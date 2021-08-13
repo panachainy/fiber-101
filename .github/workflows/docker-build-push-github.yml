@@ -3,7 +3,7 @@ name: Docker build and push
 on:
   push:
     branches:
-      - feature/pipeline-docker
+      - develop
       - main
 
     tags:
@@ -12,7 +12,7 @@ on:
 env:
   IMAGE_NAME: fiber-101
   REGISTRY_NAME: ghcr.io/${{ github.repository_owner }}
-  LATEST_BRANCH: feature/pipeline-docker
+  LATEST_BRANCH: develop
   DOCKER_SOURCE: ghcr.io
   DOCKER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKER_USER: ${{ github.actor }}
