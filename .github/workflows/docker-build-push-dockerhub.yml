@@ -10,10 +10,12 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: fiber_101
-  REGISTRY_NAME: fiber_101
+  IMAGE_NAME: fiber-101
+  REGISTRY_NAME: panachainy
   LATEST_BRANCH: develop
-  DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+  DOCKER_SOURCE: ''
+  DOCKER_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+  DOCKER_USER: panachainy
 
 jobs:
   push:
@@ -30,7 +32,7 @@ jobs:
 
       - name: Log into registry
         # This is where you will update the PAT to GITHUB_TOKEN
-        run: echo $DOCKER_REGISTRY_TOKEN | docker login -u moomalltech --password-stdin
+        run: echo $DOCKER_TOKEN | docker login $DOCKER_SOURCE -u $DOCKER_USER --password-stdin
 
       - name: Extract branch name
         shell: bash
