@@ -7,7 +7,7 @@ require (
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gofiber/fiber/v2 v2.14.0
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
-	github.com/joho/godotenv v1.3.0
+	github.com/joho/godotenv v1.4.0
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.8.1
