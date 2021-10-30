@@ -1,12 +1,8 @@
 package utils
 
-type TestModel struct {
-	Description string
-
-	// Test input
-	Route string
-
-	// Expected output
+type IntegrationTestModel struct {
+	Description   string
+	Route         string
 	ExpectedError bool
 	ExpectedCode  int
 	ExpectedBody  string

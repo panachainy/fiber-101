@@ -14,7 +14,7 @@ import (
 )
 
 func TestGet(t *testing.T) {
-	tests := []utils.TestModel{
+	tests := []utils.IntegrationTestModel{
 		{
 			Description:   "index route",
 			Route:         "/",
