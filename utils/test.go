@@ -1,13 +1,13 @@
 package utils
 
-import (
-	"github.com/joho/godotenv"
-	"github.com/sirupsen/logrus"
-)
+type TestModel struct {
+	Description string
 
-func SetupTest() {
-	err := godotenv.Load(".env.test")
-	if err != nil {
-		logrus.Errorln("Error loading .env.test file:", err)
-	}
+	// Test input
+	Route string
+
+	// Expected output
+	ExpectedError bool
+	ExpectedCode  int
+	ExpectedBody  string
 }

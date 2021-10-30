@@ -1,4 +1,5 @@
-// +build integration
+//go:build test_all || integration
+// +build test_all integration
 
 package main
 
@@ -8,45 +9,36 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGet(t *testing.T) {
-	tests := []struct {
-		description string
-
-		// Test input
-		route string
-
-		// Expected output
-		expectedError bool
-		expectedCode  int
-		expectedBody  string
-	}{
+	tests := []utils.TestModel{
 		{
-			description:   "index route",
-			route:         "/",
-			expectedError: false,
-			expectedCode:  200,
-			expectedBody:  "OK",
+			Description:   "index route",
+			Route:         "/",
+			ExpectedError: false,
+			ExpectedCode:  200,
+			ExpectedBody:  "OK",
 		},
 		{
-			description:   "non existing route",
-			route:         "/i-dont-exist",
-			expectedError: false,
-			expectedCode:  404,
-			expectedBody:  "Cannot GET /i-dont-exist",
+			Description:   "non existing route",
+			Route:         "/i-dont-exist",
+			ExpectedError: false,
+			ExpectedCode:  404,
+			ExpectedBody:  "Cannot GET /i-dont-exist",
 		},
 	}
 
-	utils.SetupTest()
-
 	app := SetupApp()
+
+	logrus.Infoln("Running tes====", tests)
 
 	for _, test := range tests {
 		req, _ := http.NewRequest(
 			"GET",
-			test.route,
+			test.Route,
 			nil,
 		)
 
@@ -54,9 +46,9 @@ func TestGet(t *testing.T) {
 
 		body, err := ioutil.ReadAll(res.Body)
 
-		assert.Equalf(t, test.expectedError, err != nil, test.description)
+		assert.Equalf(t, test.ExpectedError, err != nil, test.Description)
 
-		assert.Nilf(t, err, test.description)
-		assert.Equalf(t, test.expectedBody, string(body), test.description)
+		assert.Nilf(t, err, test.Description)
+		assert.Equalf(t, test.ExpectedBody, string(body), test.Description)
 	}
 }
