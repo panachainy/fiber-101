@@ -100,7 +100,7 @@ docker build -t fiber .
 docker run --rm -d \
     --name dev-fiber \
     --network dev-network \
-    -p 5000:5000 \
+    -p 5050:5050 \
     fiber
 ```
 
@@ -110,7 +110,7 @@ docker run --rm -d \
 docker run \
     --name dev-fiber \
     --network dev-network \
-    -p 5000:5000 \
+    -p 5050:5050 \
     fiber
 ```
 
@@ -127,7 +127,7 @@ docker run \
     -e DB_SSLMODE=disable \
     -e DB_TIMEZONE=Asia/Shanghai \
     --network pg_pg_network \
-    -p 5000:5000 \
+    -p 5050:5050 \
     fiber
 ```
 
