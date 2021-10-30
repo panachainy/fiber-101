@@ -17,6 +17,10 @@ tidy:
 
 test:
 	$(ENV_LOCAL_TEST) \
+	go test -tags=test_all -cover ./...
+
+test.debug:
+	$(ENV_LOCAL_TEST) \
 	go test -tags=test_all -v -cover ./...
 
 test.cov:
@@ -27,6 +31,10 @@ test.it:
 	$(ENV_LOCAL_TEST) \
 	go test -tags=integration -v -cover ./...
 
+test.unit:
+	$(ENV_LOCAL_TEST) \
+	go test -tags=unit -v -cover ./...
+
 cov.htm:
 	go tool cover -html=covprofile
 
@@ -35,17 +43,3 @@ cov.func:
 
 publish:
 	publish.sh
-
-
-
-# this command will trigger integration test
-# INTEGRATION_TEST_SUITE_PATH is used for run specific test in Golang, if it's not specified
-# it will run all tests under ./it directory
-test.integration:
-	$(ENV_LOCAL_TEST) \
-	go test -tags=integration $(INTEGRATION_TEST_PATH) -count=1 # -run=$(INTEGRATION_TEST_SUITE_PATH)
-
-# this command will trigger integration test with verbose mode
-test.integration.debug:
-	$(ENV_LOCAL_TEST) \
-	go test -tags=integration $(INTEGRATION_TEST_PATH) -count=1 -v -run=$(INTEGRATION_TEST_SUITE_PATH)
