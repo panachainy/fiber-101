@@ -1,5 +1,3 @@
-INTEGRATION_TEST_PATH?=./it
-
 ENV_LOCAL_TEST=\
 	DB_HOST=localhost \
 	DB_PORT=5432 \
