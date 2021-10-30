@@ -18,3 +18,16 @@ cov-func:
 
 publish:
 	publish.sh
+ENV_LOCAL_TEST=\
+	DB_HOST=localhost \
+	DB_PORT=5432 \
+	DB_USER=postgres \
+	DB_PASSWORD=1234 \
+	DB_NAME=test_db \
+	DB_SSLMODE=disable \
+	DB_TIMEZONE=Asia/Shanghai
+
+
+test.it:
+	$(ENV_LOCAL_TEST) \
+	go test -tags=integration -v -cover ./...
