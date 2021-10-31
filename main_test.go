@@ -4,7 +4,6 @@
 package main
 
 import (
-	"fiber-101/utils"
 	"io/ioutil"
 	"net/http"
 	"testing"
