@@ -1,7 +1,9 @@
+//go:build test_all || integration
+// +build test_all integration
+
 package main
 
 import (
-	"fiber-101/utils"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -11,12 +13,8 @@ import (
 
 func TestGet(t *testing.T) {
 	tests := []struct {
-		description string
-
-		// Test input
-		route string
-
-		// Expected output
+		description   string
+		route         string
 		expectedError bool
 		expectedCode  int
 		expectedBody  string
@@ -36,8 +34,6 @@ func TestGet(t *testing.T) {
 			expectedBody:  "Cannot GET /i-dont-exist",
 		},
 	}
-
-	utils.SetupTest()
 
 	app := SetupApp()
 

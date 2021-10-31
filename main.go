@@ -14,7 +14,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var port = flag.String("port", ":5000", "Port to listen on")
+var port = flag.String("port", ":5050", "Port to listen on")
 
 func main() {
 	app := SetupApp()

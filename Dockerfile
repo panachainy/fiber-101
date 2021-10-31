@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine AS builder
+FROM golang:1.17-alpine AS builder
 
 # Move to working directory (/build).
 WORKDIR /build
@@ -22,7 +22,7 @@ FROM scratch
 COPY --from=builder ["/build/apiserver", "/"]
 
 # Export necessary port.
-EXPOSE 5000
+EXPOSE 5050
 
 # Command to run when starting the container.
 ENTRYPOINT ["/apiserver"]

@@ -1,5 +1,5 @@
 #@baseUrl=""
-@baseUrl="http://localhost:5000"
+@baseUrl="http://localhost:5050"
 
 ### get product
 curl "{{baseUrl}}/products"
