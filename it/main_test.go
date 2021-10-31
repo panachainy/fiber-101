@@ -1,9 +1,10 @@
 //go:build test_all || integration
 // +build test_all integration
 
-package main
+package it
 
 import (
+	"fiber-101/utils"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -35,7 +36,7 @@ func TestGet(t *testing.T) {
 		},
 	}
 
-	app := SetupApp()
+	app := utils.SetupApp()
 
 	for _, test := range tests {
 		req, _ := http.NewRequest(
