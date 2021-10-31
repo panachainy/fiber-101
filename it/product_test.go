@@ -1,9 +1,10 @@
 //go:build test_all || integration
 // +build test_all integration
 
-package main
+package it
 
 import (
+	"fiber-101/utils"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -11,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGet(t *testing.T) {
+func TestGetProducts(t *testing.T) {
 	tests := []struct {
 		description   string
 		route         string
@@ -21,21 +22,14 @@ func TestGet(t *testing.T) {
 	}{
 		{
 			description:   "index route",
-			route:         "/",
+			route:         "/products",
 			expectedError: false,
 			expectedCode:  200,
-			expectedBody:  "OK",
-		},
-		{
-			description:   "non existing route",
-			route:         "/i-dont-exist",
-			expectedError: false,
-			expectedCode:  404,
-			expectedBody:  "Cannot GET /i-dont-exist",
+			expectedBody:  "{\"data\":[]}",
 		},
 	}
 
-	app := SetupApp()
+	app := utils.SetupApp()
 
 	for _, test := range tests {
 		req, _ := http.NewRequest(
