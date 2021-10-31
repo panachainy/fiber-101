@@ -9,9 +9,11 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/sirupsen/logrus"
+
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 var port = flag.String("port", ":5050", "Port to listen on")
@@ -52,7 +54,13 @@ func SetupApp() *fiber.App {
 
 	database.Init()
 
-	app.Use(logger.New())
+	app.Use(requestid.New())
+	app.Use(logger.New(logger.Config{
+		Format: "${pid} ${locals:requestid} ${status} - ${method} ${path}​​ ${latency}" +
+			" Request: ${queryParams} ${body} ${query} ${form} ${cookie}" +
+			" Error: ${error}\n",
+	}))
+
 	app.Use(recover.New())
 
 	router.SetupRoutes(app)
