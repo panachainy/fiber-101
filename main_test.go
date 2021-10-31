@@ -1,7 +1,7 @@
 //go:build test_all || integration
 // +build test_all integration
 
-package it
+package main
 
 import (
 	"fiber-101/utils"
