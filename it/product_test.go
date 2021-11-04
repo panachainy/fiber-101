@@ -14,8 +14,11 @@ import (
 
 func TestGetProducts(t *testing.T) {
 	tests := []struct {
+		mock          func()
 		description   string
 		route         string
+		method        string
+		body          string
 		expectedError bool
 		expectedCode  int
 		expectedBody  string
@@ -23,6 +26,15 @@ func TestGetProducts(t *testing.T) {
 		{
 			description:   "index route",
 			route:         "/products",
+			method:        "GET",
+			expectedError: false,
+			expectedCode:  200,
+			expectedBody:  "{\"data\":[]}",
+		}, {
+			description:   "index route",
+			route:         "/products",
+			method:        "POST",
+			body:          "",
 			expectedError: false,
 			expectedCode:  200,
 			expectedBody:  "{\"data\":[]}",
@@ -31,10 +43,15 @@ func TestGetProducts(t *testing.T) {
 
 	app := utils.SetupApp()
 
-	for _, test := range tests {
+	for _, tt := range tests {
+
+		// if tt.mock {
+		// 	tt.mock()
+		// }
+
 		req, _ := http.NewRequest(
-			"GET",
-			test.route,
+			tt.method,
+			tt.route,
 			nil,
 		)
 
@@ -42,9 +59,9 @@ func TestGetProducts(t *testing.T) {
 
 		body, err := ioutil.ReadAll(res.Body)
 
-		assert.Equalf(t, test.expectedError, err != nil, test.description)
+		assert.Equalf(t, tt.expectedError, err != nil, tt.description)
 
-		assert.Nilf(t, err, test.description)
-		assert.Equalf(t, test.expectedBody, string(body), test.description)
+		assert.Nilf(t, err, tt.description)
+		assert.Equalf(t, tt.expectedBody, string(body), tt.description)
 	}
 }
