@@ -1,5 +1,5 @@
 ENV_LOCAL_TEST=\
-	DB_HOST=postgres \
+	DB_HOST=localhost \
 	DB_PORT=5432 \
 	DB_USER=postgres \
 	DB_PASSWORD=1234 \
