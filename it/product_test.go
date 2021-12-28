@@ -1,6 +1,3 @@
-//go:build test_all || integration
-// +build test_all integration
-
 package it
 
 import (

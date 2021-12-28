@@ -1,6 +1,3 @@
-//go:build test_all || unit
-// +build test_all unit
-
 package config
 
 import (
