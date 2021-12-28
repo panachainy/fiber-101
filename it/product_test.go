@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// TODO: try to make integration test.
 func TestGetProducts(t *testing.T) {
 	tests := []struct {
 		mock          func()
