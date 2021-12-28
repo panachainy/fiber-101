@@ -30,7 +30,7 @@ func TestGetProducts(t *testing.T) {
 				// }
 
 				// db := database.DBConn
-				// db.Exec("DELETE FROM Products")
+				// utils.CleanDatabase()
 				// db.Create(&product)
 			},
 			description:   "index route",
