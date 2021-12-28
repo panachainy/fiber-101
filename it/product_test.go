@@ -21,30 +21,40 @@ func TestGetProducts(t *testing.T) {
 		expectedBody  string
 	}{
 		{
+			mock: func() {
+				// product := &model.Product{
+				// 	Code:          "",
+				// 	Price:         2,
+				// 	PriceDetailJa: 1,
+				// }
+
+				// db := database.DBConn
+				// db.Exec("DELETE FROM Products")
+				// db.Create(&product)
+			},
 			description:   "index route",
 			route:         "/products",
 			method:        "GET",
 			expectedError: false,
 			expectedCode:  200,
 			expectedBody:  "{\"data\":[]}",
-		}, {
+		},
+		{
+			mock:          func() {},
 			description:   "index route",
 			route:         "/products",
 			method:        "POST",
 			body:          "",
 			expectedError: false,
 			expectedCode:  200,
-			expectedBody:  "{\"data\":[]}",
+			expectedBody:  "{\"message\":\"Unprocessable Entity\"}",
 		},
 	}
 
 	app := utils.SetupApp()
 
 	for _, tt := range tests {
-
-		// if tt.mock {
-		// 	tt.mock()
-		// }
+		tt.mock()
 
 		req, _ := http.NewRequest(
 			tt.method,
