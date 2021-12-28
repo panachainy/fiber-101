@@ -1,6 +1,3 @@
-//go:build test_all || integration
-// +build test_all integration
-
 package it
 
 import (
@@ -12,29 +9,57 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// TODO: try to make integration test.
 func TestGetProducts(t *testing.T) {
 	tests := []struct {
+		mock          func()
 		description   string
 		route         string
+		method        string
+		body          string
 		expectedError bool
 		expectedCode  int
 		expectedBody  string
 	}{
 		{
+			mock: func() {
+				// product := &model.Product{
+				// 	Code:          "",
+				// 	Price:         2,
+				// 	PriceDetailJa: 1,
+				// }
+
+				// db := database.DBConn
+				// utils.CleanDatabase()
+				// db.Create(&product)
+			},
 			description:   "index route",
 			route:         "/products",
+			method:        "GET",
 			expectedError: false,
 			expectedCode:  200,
 			expectedBody:  "{\"data\":[]}",
+		},
+		{
+			mock:          func() {},
+			description:   "index route",
+			route:         "/products",
+			method:        "POST",
+			body:          "",
+			expectedError: false,
+			expectedCode:  200,
+			expectedBody:  "{\"message\":\"Unprocessable Entity\"}",
 		},
 	}
 
 	app := utils.SetupApp()
 
-	for _, test := range tests {
+	for _, tt := range tests {
+		tt.mock()
+
 		req, _ := http.NewRequest(
-			"GET",
-			test.route,
+			tt.method,
+			tt.route,
 			nil,
 		)
 
@@ -42,9 +67,9 @@ func TestGetProducts(t *testing.T) {
 
 		body, err := ioutil.ReadAll(res.Body)
 
-		assert.Equalf(t, test.expectedError, err != nil, test.description)
+		assert.Equalf(t, tt.expectedError, err != nil, tt.description)
 
-		assert.Nilf(t, err, test.description)
-		assert.Equalf(t, test.expectedBody, string(body), test.description)
+		assert.Nilf(t, err, tt.description)
+		assert.Equalf(t, tt.expectedBody, string(body), tt.description)
 	}
 }

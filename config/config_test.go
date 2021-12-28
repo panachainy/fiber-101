@@ -1,6 +1,3 @@
-//go:build test_all || unit
-// +build test_all unit
-
 package config
 
 import (
@@ -33,9 +30,9 @@ func TestGetConfig(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		res := Get(test.key, test.envPath)
+	for _, tt := range tests {
+		res := Get(tt.key, tt.envPath)
 
-		assert.Equalf(t, test.expectedResponse, res, test.description)
+		assert.Equalf(t, tt.expectedResponse, res, tt.description)
 	}
 }
