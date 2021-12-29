@@ -13,25 +13,18 @@ run:
 tidy:
 	go mod tidy -v
 
+
 test:
 	$(ENV_LOCAL_TEST) \
-	go test -tags=test_all -cover ./...
+	go test -cover ./...
 
 test.debug:
 	$(ENV_LOCAL_TEST) \
-	go test -tags=test_all -v -cover ./...
+	go test -v -cover ./...
 
 test.cov:
 	$(ENV_LOCAL_TEST) \
-	go test -tags=test_all -v -race -covermode=atomic -coverprofile=covprofile ./...
-
-test.it:
-	$(ENV_LOCAL_TEST) \
-	go test -tags=integration -v -cover ./...
-
-test.unit:
-	$(ENV_LOCAL_TEST) \
-	go test -tags=unit -v -cover ./...
+	go test -v -race -covermode=atomic -coverprofile=covprofile ./...
 
 cov.htm:
 	go tool cover -html=covprofile
