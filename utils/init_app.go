@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fiber-101/build"
+	"fiber-101/config"
 	"fiber-101/database"
 	"fiber-101/router"
 	"fmt"
@@ -37,6 +38,8 @@ func SetupApp() *fiber.App {
 			return nil
 		},
 	})
+
+	config.Load(".env")
 
 	build.SetupVersion(app)
 

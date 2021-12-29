@@ -11,6 +11,7 @@ require (
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.8.1
+	github.com/spf13/viper v1.10.1 // indirect
 	github.com/stretchr/testify v1.7.0
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 	gorm.io/driver/postgres v1.1.0
