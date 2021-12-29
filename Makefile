@@ -13,7 +13,6 @@ run:
 tidy:
 	go mod tidy -v
 
-
 test:
 	$(ENV_LOCAL_TEST) \
 	go test -cover ./...
