@@ -10,7 +10,7 @@ import (
 var port = flag.String("port", ":5050", "Port to listen on")
 
 func main() {
-	app := utils.SetupApp()
+	app := utils.SetupApp(".env")
 
 	logrus.Fatal(app.Listen(*port))
 }

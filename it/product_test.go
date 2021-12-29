@@ -23,14 +23,14 @@ func TestGetProducts(t *testing.T) {
 	}{
 		{
 			mock: func() {
-				// product := &model.Product{
+				// product := &models.Product{
 				// 	Code:          "",
 				// 	Price:         2,
 				// 	PriceDetailJa: 1,
 				// }
 
 				// db := database.DBConn
-				// utils.CleanDatabase()
+				utils.CleanDatabase()
 				// db.Create(&product)
 			},
 			description:   "index route",
@@ -52,7 +52,7 @@ func TestGetProducts(t *testing.T) {
 		},
 	}
 
-	app := utils.SetupApp()
+	app := utils.SetupApp("../example.env")
 
 	for _, tt := range tests {
 		tt.mock()

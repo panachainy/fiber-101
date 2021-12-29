@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fiber-101/build"
+	"fiber-101/config"
 	"fiber-101/database"
 	"fiber-101/router"
 	"fmt"
@@ -12,7 +13,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 )
 
-func SetupApp() *fiber.App {
+func SetupApp(envPath string) *fiber.App {
 	InitLogrus()
 
 	app := fiber.New(fiber.Config{
@@ -37,6 +38,8 @@ func SetupApp() *fiber.App {
 			return nil
 		},
 	})
+
+	config.Load(envPath)
 
 	build.SetupVersion(app)
 

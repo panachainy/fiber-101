@@ -38,13 +38,13 @@ Try Fiber framework on 101
 ### Env
 
 ```sh
-export DB_HOST=localhost
-export DB_PORT=5432
-export DB_USER=postgres
-export DB_PASSWORD=1234
-export DB_NAME=postgres
-export DB_SSLMODE=disable
-export DB_TIMEZONE=Asia/Shanghai
+export DATABASE_HOST=localhost
+export DATABASE_PORT=5432
+export DATABASE_USER=postgres
+export DATABASE_PASSWORD=1234
+export DATABASE_NAME=postgres
+export DATABASE_SSLMODE=disable
+export DATABASE_TIMEZONE=Asia/Shanghai
 
 # Choose [trace, debug, info, warn, error, fatal, panic] default is debug
 export LOG_LEVEL=INFO
@@ -122,13 +122,13 @@ or
 ```sh
 docker rm fiber
 docker run \
-    -e DB_HOST=pg_postgres_1 \
-    -e DB_PORT=5432 \
-    -e DB_USER=postgres \
-    -e DB_PASSWORD=1234 \
-    -e DB_NAME=postgres \
-    -e DB_SSLMODE=disable \
-    -e DB_TIMEZONE=Asia/Shanghai \
+    -e DATABASE_HOST=pg_postgres_1 \
+    -e DATABASE_PORT=5432 \
+    -e DATABASE_USER=postgres \
+    -e DATABASE_PASSWORD=1234 \
+    -e DATABASE_NAME=postgres \
+    -e DATABASE_SSLMODE=disable \
+    -e DATABASE_TIMEZONE=Asia/Shanghai \
     --network pg_pg_network \
     -p 5050:5050 \
     fiber

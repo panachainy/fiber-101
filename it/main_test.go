@@ -33,7 +33,7 @@ func TestGet(t *testing.T) {
 		},
 	}
 
-	app := utils.SetupApp()
+	app := utils.SetupApp("../example.env")
 
 	for _, test := range tests {
 		req, _ := http.NewRequest(
