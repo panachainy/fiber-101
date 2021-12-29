@@ -23,7 +23,7 @@ func TestGetProducts(t *testing.T) {
 	}{
 		{
 			mock: func() {
-				// product := &model.Product{
+				// product := &models.Product{
 				// 	Code:          "",
 				// 	Price:         2,
 				// 	PriceDetailJa: 1,
