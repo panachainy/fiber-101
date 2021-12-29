@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fiber-101/database"
+	"fiber-101/models"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"

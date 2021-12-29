@@ -2,6 +2,7 @@ package database
 
 import (
 	"fiber-101/config"
+	"fiber-101/models"
 	"fmt"
 
 	"github.com/sirupsen/logrus"
