@@ -27,22 +27,22 @@ func Init() {
 	} else {
 		logrus.Infoln("[DB-CONFIG] Use split config DATABASE")
 
-		logrus.Debug("[DB-CONFIG] DB_HOST: ", config.Get("DB_HOST"))
-		logrus.Debug("[DB-CONFIG] DB_USER: ", config.Get("DB_USER"))
-		logrus.Debug("[DB-CONFIG] DB_PASSWORD: ", config.Get("DB_PASSWORD"))
-		logrus.Debug("[DB-CONFIG] DB_NAME: ", config.Get("DB_NAME"))
-		logrus.Debug("[DB-CONFIG] DB_PORT: ", config.Get("DB_PORT"))
-		logrus.Debug("[DB-CONFIG] DB_SSLMODE: ", config.Get("DB_SSLMODE"))
-		logrus.Debug("[DB-CONFIG] DB_TIMEZONE: ", config.Get("DB_TIMEZONE"))
+		logrus.Debug("[DB-CONFIG] DATABASE_HOST: ", config.Get("DATABASE_HOST"))
+		logrus.Debug("[DB-CONFIG] DATABASE_USER: ", config.Get("DATABASE_USER"))
+		logrus.Debug("[DB-CONFIG] DATABASE_PASSWORD: ", config.Get("DATABASE_PASSWORD"))
+		logrus.Debug("[DB-CONFIG] DATABASE_NAME: ", config.Get("DATABASE_NAME"))
+		logrus.Debug("[DB-CONFIG] DATABASE_PORT: ", config.Get("DATABASE_PORT"))
+		logrus.Debug("[DB-CONFIG] DATABASE_SSLMODE: ", config.Get("DATABASE_SSLMODE"))
+		logrus.Debug("[DB-CONFIG] DATABASE_TIMEZONE: ", config.Get("DATABASE_TIMEZONE"))
 
 		dsn = fmt.Sprintf("host=%v user=%v password=%v dbname=%v port=%v sslmode=%v TimeZone=%v",
-			config.Get("DB_HOST"),
-			config.Get("DB_USER"),
-			config.Get("DB_PASSWORD"),
-			config.Get("DB_NAME"),
-			config.Get("DB_PORT"),
-			config.Get("DB_SSLMODE"),
-			config.Get("DB_TIMEZONE"))
+			config.Get("DATABASE_HOST"),
+			config.Get("DATABASE_USER"),
+			config.Get("DATABASE_PASSWORD"),
+			config.Get("DATABASE_NAME"),
+			config.Get("DATABASE_PORT"),
+			config.Get("DATABASE_SSLMODE"),
+			config.Get("DATABASE_TIMEZONE"))
 	}
 	DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {

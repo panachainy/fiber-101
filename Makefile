@@ -1,11 +1,11 @@
 ENV_LOCAL_TEST=\
-	DB_HOST=localhost \
-	DB_PORT=5432 \
-	DB_USER=postgres \
-	DB_PASSWORD=1234 \
-	DB_NAME=test_db \
-	DB_SSLMODE=disable \
-	DB_TIMEZONE=Asia/Shanghai
+	DATABASE_HOST=localhost \
+	DATABASE_PORT=5432 \
+	DATABASE_USER=postgres \
+	DATABASE_PASSWORD=1234 \
+	DATABASE_NAME=test_db \
+	DATABASE_SSLMODE=disable \
+	DATABASE_TIMEZONE=Asia/Shanghai
 
 run:
 	air

@@ -16,7 +16,7 @@ func TestGetConfig(t *testing.T) {
 	}{
 		{
 			description:      "when get existing env key from file should be 5432",
-			key:              "DB_PORT",
+			key:              "DATABASE_PORT",
 			envPath:          ".env.example",
 			expectedError:    false,
 			expectedResponse: "5432",
