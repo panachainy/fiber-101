@@ -13,7 +13,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 )
 
-func SetupApp() *fiber.App {
+func SetupApp(envPath string) *fiber.App {
 	InitLogrus()
 
 	app := fiber.New(fiber.Config{
@@ -39,7 +39,7 @@ func SetupApp() *fiber.App {
 		},
 	})
 
-	config.Load(".env")
+	config.Load(envPath)
 
 	build.SetupVersion(app)
 

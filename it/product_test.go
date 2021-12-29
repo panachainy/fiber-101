@@ -30,7 +30,7 @@ func TestGetProducts(t *testing.T) {
 				// }
 
 				// db := database.DBConn
-				// utils.CleanDatabase()
+				utils.CleanDatabase()
 				// db.Create(&product)
 			},
 			description:   "index route",
@@ -52,7 +52,7 @@ func TestGetProducts(t *testing.T) {
 		},
 	}
 
-	app := utils.SetupApp()
+	app := utils.SetupApp("../example.env")
 
 	for _, tt := range tests {
 		tt.mock()
