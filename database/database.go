@@ -12,6 +12,8 @@ import (
 
 var DBConn *gorm.DB
 
+// TODO: upgrade to support sqlite for test
+
 func Init() {
 	var err error
 	var dsn string
