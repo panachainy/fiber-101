@@ -1,4 +1,4 @@
-package entities
+package products
 
 import (
 	"fiber-101/models"

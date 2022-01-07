@@ -2,17 +2,16 @@ package products
 
 import (
 	"fiber-101/database"
-	"fiber-101/products/entities"
 	"fmt"
 
 	"gorm.io/gorm"
 )
 
 type ProductRepository interface {
-	GetAll() []entities.Product
+	GetAll() []Product
 
 	RemoveById(uid string) error
-	AddNewRegister(u entities.Product) error
+	AddNewRegister(u Product) error
 }
 
 func NewProductRepo(DBConn *gorm.DB) ProductRepository {
@@ -23,14 +22,14 @@ type productRepoImp struct {
 	DBConn *gorm.DB
 }
 
-func (r *productRepoImp) AddNewRegister(product entities.Product) error {
+func (r *productRepoImp) AddNewRegister(product Product) error {
 	r.DBConn.Create(&product)
 
 	return nil
 }
 
 func (r *productRepoImp) RemoveById(uid string) error {
-	var product entities.Product
+	var product Product
 	r.DBConn.First(&product, uid)
 
 	if product.ID == 0 {
@@ -41,8 +40,8 @@ func (r *productRepoImp) RemoveById(uid string) error {
 	return nil
 }
 
-func (r *productRepoImp) GetAll() []entities.Product {
-	var product []entities.Product
+func (r *productRepoImp) GetAll() []Product {
+	var product []Product
 	database.DBConn.Find(&product)
 	return product
 }
