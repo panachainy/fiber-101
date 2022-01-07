@@ -2,7 +2,6 @@ package database
 
 import (
 	"fiber-101/config"
-	"fiber-101/products/entities"
 	"fmt"
 
 	"github.com/sirupsen/logrus"
@@ -39,10 +38,5 @@ func Init() {
 	DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Failed to connect database")
-	}
-
-	err = DBConn.AutoMigrate(&entities.Product{})
-	if err != nil {
-		panic("Failed to auto migrate database")
 	}
 }

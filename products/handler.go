@@ -2,27 +2,26 @@ package products
 
 import (
 	"fiber-101/database"
-	"fiber-101/products/entities"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func Gets(c *fiber.Ctx) error {
-	var product []entities.Product
+func GetGetsFunc(p ProductRepository) func(c *fiber.Ctx) error {
+	return func(c *fiber.Ctx) error {
+		products := p.GetAll()
 
-	database.DBConn.Find(&product)
-
-	return c.JSON(fiber.Map{
-		"data": product,
-	})
+		return c.JSON(fiber.Map{
+			"data": products,
+		})
+	}
 }
 
 func Get(c *fiber.Ctx) error {
 	id := c.Params("id")
 
 	db := database.DBConn
-	var product entities.Product
+	var product Product
 	db.Find(&product, id)
 	if product.ID == 0 {
 		c.Status(400)
@@ -35,14 +34,14 @@ func Get(c *fiber.Ctx) error {
 }
 
 func Create(c *fiber.Ctx) error {
-	product := new(entities.Product)
+	product := new(Product)
 
 	if err := c.BodyParser(product); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": err.Error(),
 		})
 	}
-	errors := entities.ProductValidate(*product)
+	errors := ValidateStruct(*product)
 	if errors != nil {
 		return c.JSON(errors)
 	}
@@ -56,7 +55,7 @@ func Delete(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 
-	var product entities.Product
+	var product Product
 
 	db.First(&product, id)
 

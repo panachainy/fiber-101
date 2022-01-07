@@ -1,4 +1,4 @@
-package entities
+package products
 
 import (
 	"fiber-101/models"
@@ -14,7 +14,7 @@ type Product struct {
 	PriceDetailJa int
 }
 
-func ProductValidate(product Product) []*models.ErrorResponse {
+func ValidateStruct(product Product) []*models.ErrorResponse {
 	var errors []*models.ErrorResponse
 	validate := validator.New()
 	err := validate.Struct(product)
