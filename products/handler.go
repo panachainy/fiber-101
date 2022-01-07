@@ -41,7 +41,7 @@ func Create(c *fiber.Ctx) error {
 			"message": err.Error(),
 		})
 	}
-	errors := ProductValidate(*product)
+	errors := ValidateStruct(*product)
 	if errors != nil {
 		return c.JSON(errors)
 	}
