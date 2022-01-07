@@ -4,6 +4,7 @@ import (
 	"fiber-101/build"
 	"fiber-101/config"
 	"fiber-101/database"
+	"fiber-101/database/migration"
 	"fiber-101/router"
 	"fmt"
 
@@ -44,6 +45,7 @@ func SetupApp(envPath string) *fiber.App {
 	build.SetupVersion(app)
 
 	database.Init()
+	migration.Migrate(database.DBConn)
 
 	app.Use(requestid.New())
 	app.Use(logger.New(logger.Config{
