@@ -1,4 +1,4 @@
-package utils
+package it
 
 import "fiber-101/database"
 

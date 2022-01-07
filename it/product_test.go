@@ -29,8 +29,8 @@ func TestGetProducts(t *testing.T) {
 				// 	PriceDetailJa: 1,
 				// }
 
-				// db := database.DBConn
-				utils.CleanDatabase()
+				// db := utils.DBConn
+				CleanDatabase()
 				// db.Create(&product)
 			},
 			description:   "index route",
