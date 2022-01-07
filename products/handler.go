@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func GetProducts(c *fiber.Ctx) error {
+func Gets(c *fiber.Ctx) error {
 	var product []entities.Product
 
 	database.DBConn.Find(&product)
@@ -18,7 +18,7 @@ func GetProducts(c *fiber.Ctx) error {
 	})
 }
 
-func GetProduct(c *fiber.Ctx) error {
+func Get(c *fiber.Ctx) error {
 	id := c.Params("id")
 
 	db := database.DBConn
@@ -34,7 +34,7 @@ func GetProduct(c *fiber.Ctx) error {
 	return c.JSON(product)
 }
 
-func CreateProduct(c *fiber.Ctx) error {
+func Create(c *fiber.Ctx) error {
 	product := new(entities.Product)
 
 	if err := c.BodyParser(product); err != nil {
@@ -52,7 +52,7 @@ func CreateProduct(c *fiber.Ctx) error {
 	return c.SendStatus(201)
 }
 
-func DeleteProduct(c *fiber.Ctx) error {
+func Delete(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 
