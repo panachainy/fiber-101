@@ -8,14 +8,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Gets(c *fiber.Ctx) error {
-	var product []entities.Product
+func GetGetsFunc(p ProductRepository) func(c *fiber.Ctx) error {
+	return func(c *fiber.Ctx) error {
+		products := p.GetAll()
 
-	database.DBConn.Find(&product)
-
-	return c.JSON(fiber.Map{
-		"data": product,
-	})
+		return c.JSON(fiber.Map{
+			"data": products,
+		})
+	}
 }
 
 func Get(c *fiber.Ctx) error {
