@@ -1,15 +1,15 @@
-package handler
+package products
 
 import (
 	"fiber-101/database"
-	"fiber-101/models"
+	"fiber-101/products/entities"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func GetProducts(c *fiber.Ctx) error {
-	var product []models.Product
+	var product []entities.Product
 
 	database.DBConn.Find(&product)
 
@@ -22,7 +22,7 @@ func GetProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 
 	db := database.DBConn
-	var product models.Product
+	var product entities.Product
 	db.Find(&product, id)
 	if product.ID == 0 {
 		c.Status(400)
@@ -35,14 +35,14 @@ func GetProduct(c *fiber.Ctx) error {
 }
 
 func CreateProduct(c *fiber.Ctx) error {
-	product := new(models.Product)
+	product := new(entities.Product)
 
 	if err := c.BodyParser(product); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": err.Error(),
 		})
 	}
-	errors := models.ValidateStruct(*product)
+	errors := entities.ProductValidate(*product)
 	if errors != nil {
 		return c.JSON(errors)
 	}
@@ -56,7 +56,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 
-	var product models.Product
+	var product entities.Product
 
 	db.First(&product, id)
 
