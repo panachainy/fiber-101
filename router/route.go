@@ -14,6 +14,7 @@ func SetupRoutes(app *fiber.App) {
 		return c.SendString("OK")
 	})
 
+	// TODO: refactor other handlers to use the same pattern
 	app.Get("/products", products.GetGetsFunc(p))
 	app.Get("/products/:id", products.Get)
 	app.Post("/products", products.Create)

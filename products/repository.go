@@ -10,6 +10,7 @@ import (
 type ProductRepository interface {
 	GetAll() []Product
 
+	// TODO: change interface follow handler requirement
 	RemoveById(uid string) error
 	AddNewRegister(u Product) error
 }
