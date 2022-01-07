@@ -6,6 +6,8 @@ require (
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gofiber/fiber/v2 v2.14.0
+	github.com/graphql-go/graphql v0.8.0 // indirect
+	github.com/graphql-go/graphql-go-handler v0.2.3 // indirect
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.6.0 // indirect
