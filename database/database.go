@@ -2,7 +2,7 @@ package database
 
 import (
 	"fiber-101/config"
-	"fiber-101/models"
+	"fiber-101/products/entities"
 	"fmt"
 
 	"github.com/sirupsen/logrus"
@@ -41,7 +41,7 @@ func Init() {
 		panic("Failed to connect database")
 	}
 
-	err = DBConn.AutoMigrate(&models.Product{})
+	err = DBConn.AutoMigrate(&entities.Product{})
 	if err != nil {
 		panic("Failed to auto migrate database")
 	}
