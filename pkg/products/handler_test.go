@@ -50,10 +50,7 @@ func TestGetGetsFunc(t *testing.T) {
 				appMock.Get("/gets", got)
 
 				req := httptest.NewRequest("GET", "/gets", nil)
-				resp, err := appMock.Test(req, 5000)
-
-				fmt.Println("=====================================")
-				fmt.Println(err)
+				resp, _ := appMock.Test(req, 5000)
 
 				fmt.Print(resp)
 				bodyBytes, err := io.ReadAll(resp.Body)
