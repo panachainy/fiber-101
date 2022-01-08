@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http/httptest"
-	"reflect"
+	reflect "reflect"
 	"testing"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,45 +12,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// func setupTestSuite(tb testing.TB) func(tb testing.TB) {
-// 	os.Setenv("REDIS_HOST", "127.0.0.1")
-// 	os.Setenv("REDIS_PORT", "6379")
-// 	os.Setenv("REDIS_PASSWORD", "redispassword1234")
-// 	os.Setenv("REDIS_DB", "0")
-// 	os.Setenv("MOOMALL_PLATFORM_URL", "http://127.0.0.1:3500")
-// 	os.Setenv("MOOMALL_PLATFORM_NAME", "SALEPAGE_TEST")
-// 	os.Setenv("MOOMALL_PLATFORM_SECRET", "TEST")
-
-// 	config.Load("../example.env")
-
-// 	database.InitRedis()
-
-// 	return func(tb testing.TB) {
-// 		logrus.Info("Teardown suite test")
-// 	}
-// }
-
-// func NewMockProductRepo() ProductRepository {
-// 	return &mockProductRepoImp{}
-// }
-
-// type mockProductRepoImp struct {
-// 	DBConn *gorm.DB
-// }
-
-// func (r *mockProductRepoImp) GetAll() []Product {
-// 	products := []Product{
-// 		{
-// 			Code: "xx",
-// 		},
-// 	}
-
-// 	return products
-// }
-
 func TestGetGetsFunc(t *testing.T) {
 	type args struct {
-		p ProductRepository
+		p func(ctrl *gomock.Controller) *MockProductRepository
 	}
 	tests := []struct {
 		name string
@@ -58,7 +22,19 @@ func TestGetGetsFunc(t *testing.T) {
 		expected string
 	}{
 		{
-			name:     "when_get_Gets_func_should_return_func",
+			name: "when_get_Gets_func_should_return_func",
+			args: args{
+				p: func(ctrl *gomock.Controller) *MockProductRepository {
+					mockRepo := NewMockProductRepository(ctrl)
+					mockRepo.EXPECT().GetAll().Return([]Product{
+						{
+							Code: "xx",
+						},
+					})
+
+					return mockRepo
+				},
+			},
 			expected: "{\"data\":[{\"ID\":0,\"CreatedAt\":\"0001-01-01T00:00:00Z\",\"UpdatedAt\":\"0001-01-01T00:00:00Z\",\"DeletedAt\":null,\"Code\":\"xx\",\"Price\":0,\"PriceDetailJa\":0}]}",
 		},
 	}
@@ -66,12 +42,8 @@ func TestGetGetsFunc(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
-			mockRepo := NewMockProductRepository(ctrl)
-			mockRepo.EXPECT().GetAll().Return([]Product{
-				{
-					Code: "xx",
-				},
-			})
+
+			mockRepo := tt.args.p(ctrl)
 
 			if got := GetGetsFunc(mockRepo); !reflect.DeepEqual(got, tt.expected) {
 				appMock := fiber.New()
