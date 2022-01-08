@@ -1,7 +1,7 @@
 package migration
 
 import (
-	"fiber-101/products"
+	"fiber-101/pkg/products"
 
 	"gorm.io/gorm"
 )
