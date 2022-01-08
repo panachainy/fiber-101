@@ -3,7 +3,7 @@ package it
 import (
 	"fiber-101/utils"
 	"io/ioutil"
-	"net/http"
+	"net/http/httptest"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -57,7 +57,7 @@ func TestGetProducts(t *testing.T) {
 	for _, tt := range tests {
 		tt.mock()
 
-		req, _ := http.NewRequest(
+		req := httptest.NewRequest(
 			tt.method,
 			tt.route,
 			nil,
