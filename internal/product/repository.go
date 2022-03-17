@@ -1,8 +1,9 @@
-package products
+package product
 
 import (
-	"fiber-101/database"
 	"fmt"
+
+	"fiber-101/database"
 
 	"gorm.io/gorm"
 )

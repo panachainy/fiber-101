@@ -1,4 +1,4 @@
-package products
+package product
 
 import (
 	"fiber-101/models"

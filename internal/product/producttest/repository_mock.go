@@ -1,4 +1,4 @@
-package products
+package producttest
 
 import (
 	reflect "reflect"
