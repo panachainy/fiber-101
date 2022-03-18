@@ -1,4 +1,4 @@
-package products
+package product
 
 import (
 	"fmt"
@@ -7,6 +7,8 @@ import (
 	reflect "reflect"
 	"testing"
 
+	mock_product "fiber-101/internal/product/producttest"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
@@ -14,7 +16,7 @@ import (
 
 func TestGetGetsFunc(t *testing.T) {
 	type args struct {
-		p func(ctrl *gomock.Controller) *MockProductRepository
+		p func(ctrl *gomock.Controller) *mock_product.MockProductRepository
 	}
 	tests := []struct {
 		name string
@@ -24,8 +26,8 @@ func TestGetGetsFunc(t *testing.T) {
 		{
 			name: "when_get_Gets_func_should_return_func",
 			args: args{
-				p: func(ctrl *gomock.Controller) *MockProductRepository {
-					mockRepo := NewMockProductRepository(ctrl)
+				p: func(ctrl *gomock.Controller) *mock_product.MockProductRepository {
+					mockRepo := mock_product.NewMockProductRepository(ctrl)
 					mockRepo.EXPECT().GetAll().Return([]Product{
 						{
 							Code: "xx",
