@@ -3,7 +3,7 @@ package it
 import (
 	"fiber-101/utils"
 	"io/ioutil"
-	"net/http"
+	"net/http/httptest"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -36,7 +36,7 @@ func TestGet(t *testing.T) {
 	app := utils.SetupApp("../example.env")
 
 	for _, test := range tests {
-		req, _ := http.NewRequest(
+		req := httptest.NewRequest(
 			"GET",
 			test.route,
 			nil,

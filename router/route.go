@@ -2,7 +2,7 @@ package router
 
 import (
 	"fiber-101/database"
-	"fiber-101/products"
+	"fiber-101/pkg/products"
 
 	"github.com/gofiber/fiber/v2"
 )
